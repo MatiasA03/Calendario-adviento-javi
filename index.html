@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi princesa ❤️</title>
+
+<style>
+:root {
+  --wine: #681f37;
+  --rose: #a74760;
+  --pink: #e8bfc6;
+  --cream: #fff8f1;
+  --gold: #c6a15b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: var(--wine);
+  background:
+    radial-gradient(circle at top, #fffaf5, transparent 60%),
+    linear-gradient(145deg, #f3dfe0, #fff5ed);
+  text-align: center;
+  padding: 30px 16px 50px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.ornament {
+  color: var(--gold);
+  font-size: 25px;
+  letter-spacing: 8px;
+  margin: 12px;
+}
+
+h1 {
+  font-size: clamp(32px, 8vw, 46px);
+  margin: 10px 0;
+  font-weight: normal;
+  color: var(--wine);
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #895565;
+  margin: 12px auto 25px;
+}
+
+.photo-frame {
+  width: min(85%, 330px);
+  margin: 25px auto;
+  padding: 9px;
+  background: #fffdf9;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  box-shadow: 0 8px 25px #681f3720;
+  transform: rotate(-1deg);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.photo-caption {
+  font-style: italic;
+  padding: 12px 5px 5px;
+  font-size: 15px;
+}
+
+.calendar-title {
+  font-size: 24px;
+  font-weight: normal;
+  margin: 35px 0 8px;
+}
+
+.calendar-description {
+  font-size: 14px;
+  color: #966c77;
+  margin-bottom: 22px;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 11px;
+  max-width: 440px;
+  margin: auto;
+}
+
+.day {
+  aspect-ratio: 1;
+  border: 1px solid var(--gold);
+  border-radius: 13px;
+  background: linear-gradient(145deg, #8d344f, #641e36);
+  color: #fff5e9;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  box-shadow: 0 4px 9px #681f3720;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.day:not(:disabled):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 14px #681f3730;
+}
+
+.day.locked {
+  background: #e9d8d8;
+  color: #a88e93;
+  border-color: #d8c2bd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.day.opened {
+  background: linear-gradient(145deg, #f0d7d7, #e5b9c2);
+  color: var(--wine);
+}
+
+.day.special {
+  border: 2px solid var(--gold);
+  background: linear-gradient(145deg, #c6a15b, #9f7437);
+  color: white;
+}
+
+.footer {
+  margin-top: 35px;
+  font-size: 14px;
+  color: #956675;
+  line-height: 1.8;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  padding: 18px;
+  background: #35111dcc;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-box {
+  position: relative;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  padding: 32px 25px;
+  width: 100%;
+  max-width: 410px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 50px #00000040;
+  animation: appear .3s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.message-heart {
+  font-size: 32px;
+  color: var(--rose);
+}
+
+.message-box h2 {
+  font-size: 27px;
+  font-weight: normal;
+  color: var(--wine);
+}
+
+.message-box p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #754657;
+  white-space: pre-line;
+}
+
+.close {
+  background: var(--wine);
+  color: white;
+  border: 1px solid var(--gold);
+  padding: 12px 27px;
+  border-radius: 25px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.letter {
+  text-align: left;
+  font-size: 17px !important;
+}
+
+@media (max-width: 380px) {
+  .calendar {
+    gap: 7px;
+  }
+  .day {
+    font-size: 19px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="ornament">✦ ♥ ✦</div>
+
+  <h1>Para mi princesa</h1>
+
+  <p class="subtitle">
+    Hice un regalo único para ti bb.<br>
+    25 días, 25 razones para amarte.<br>
+    Un pequeño mensaje para cada día de diciembre.
+  </p>
+
+  <div class="photo-frame">
+    <img src="portada.jfif"
+         alt="Una fotografía de nosotros">
+    <div class="photo-caption">
+      Mi lugar favorito siempre será contigo ❤️
+    </div>
+  </div>
+
+  <div class="ornament">✧ ❀ ✧</div>
+
+  <h2 class="calendar-title">Tu calendario de Adviento único</h2>
+
+  <p class="calendar-description">
+    Cada día tiene una pequeña razón para recordarte cuánto te amo.
+    Vuelve mañana para descubrir la siguiente.
+  </p>
+
+  <div class="calendar" id="calendar"></div>
+
+  <div class="footer">
+    Hecho con todo mi amor para ti.<br>
+    Te amo hoy, mañana y siempre. ❤️
+  </div>
+
+</div>
+
+<div class="modal" id="modal">
+  <div class="message-box">
+
+    <div class="message-heart">♥</div>
+
+    <h2 id="title"></h2>
+
+    <p id="message"></p>
+
+    <button class="close" onclick="closeMessage()">
+      Nos vemos mañana mi wawi ❤️
+    </button>
+
+  </div>
+</div>
+
+<script>
+
+// ==================================
+// CONFIGURACIÓN DEL CALENDARIO
+// ==================================
+
+const ANIO = 2026;
+
+// ACTIVAR SOLO PARA PROBAR.
+// VOLVER A FALSE ANTES DE COMPARTIR.
+const MODO_PRUEBA = false;
+
+
+// ==================================
+// LAS 25 RAZONES PARA AMARTE
+// ==================================
+
+const reasons = [
+
+ "Porque tienes una manera tan bonita de demostrarme amor que muchas veces me haces sentir el hombre más afortunado del mundo.",
+
+  "Porque tus ojitos hermosos tienen algo que me encanta y podría quedarme mirándolos todo el dia.",
+
+  "Porque me enamora saber que los dos tenemos una visión de futuro en la que queremos seguir juntos.",
+
+  "Porque me encanta cómo me haces sentir querido, incluso con esos pequeños detalles que quizás para ti son simples.",
+
+  "Porque cuando te miro encuentro una mujer con la que me ilusiona compartir mi futuro.",
+
+  "Porque me encanta tu manera de ver la vida.",
+
+  "Porque tu sonrisa tiene una magia especial.",
+
+  "Porque me hace feliz saber que los dos queremos recorrer el mundo juntos.",
+
+  "Porque me encanta pasar todos mis tiempos contigo.",
+
+  "Porque me encanta poder darte cariño y recibir ese mismo amor de vuelta.",
+
+  "Porque me gusta imaginar todas las aventuras, viajes y experiencias que nos quedan por vivir.",
+
+  "Porque tu forma de demostrarme lo que sientes hace que cada día me enamore más.",
+
+  "Porque recuerdo todas nuestras citas y me rio solo al recordarlas.",
+
+  "Porque el dia que nos juntamos por primera vez no te queria soltar mas.",
+
+  "Porque comer sushi contigo es de mis momentos favoritos.",
+
+  "Porque me encanta compartir contigo esos momentos en los que no necesitamos nada más que estar juntos.",
+
+  "Porque tus ojos, tu mirada y tu sonrisa tienen una forma muy especial de alegrarme el día.",
+
+  "Porque me gusta saber que podemos soñar con las mismas cosas y mirar hacia una dirección en común.",
+
+  "Porque estoy contruyendo mi historia con la mujer que amo.",
+
+  "Porque me encanta cuidarte, regalonearte y encontrar nuevas maneras de hacerte feliz.",
+
+  "Porque cada version de ti me enamora.",
+
+  "Porque me ilusiona pensar en todas las Navidades y momentos que nos esperan en el futuro.",
+
+  "Porque no solamente me gusta tenerte a mi lado, también me encanta la persona que eres.",
+
+  "Porque si hoy me preguntaran qué quiero seguir construyendo, sin dudarlo pensaría en nosotros.",
+
+  "Porque eres mi amor, porque me haces feliz y porque entre todas las cosas bonitas que me ha regalado la vida, conocerte ha sido una de mis favoritas. Te amo. ❤️"
+];
+
+
+// ==================================
+// CARTA ESPECIAL DEL 25 DE DICIEMBRE
+// ==================================
+
+const cartaNavidad = `Mi amor:
+
+Si llegaste hasta aquí, significa que desbloqueaste las 25 razones que preparé para ti.
+
+Quería regalarte algo diferente este primer diciembre juntos. Algo que no fuera solamente un regalo material, sino una pequeña manera de recordarte todos los días lo importante que eres para mí.
+
+A veces quizás no encuentro las palabras exactas para explicarte cuánto te amo, pero quiero que sepas que me haces muy feliz.
+
+Me encanta lo que estamos construyendo, nuestras conversaciones, nuestras risas, nuestros momentos juntos y hasta esas pequeñas cosas que quizás parecen insignificantes, pero que para mí significan muchísimo.
+
+No sé qué nos tiene preparado el futuro, pero sí sé que lo quiero a tu lado, cuidándote, acompañándote y creando muchos recuerdos contigo.
+
+Gracias por llegar a mi vida y hacerla un poquito más bonita.
+
+Espero que esta Navidad sea la primera de muchas que podamos compartir.
+
+Te amo, mi amor.
+
+Con todo mi amor,
+Tu wawi ❤️`;
+
+
+// ==================================
+// FECHA ACTUAL EN CHILE
+// ==================================
+
+function fechaChile() {
+
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Santiago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).format(new Date());
+
+}
+
+
+// ==================================
+// CREAR LAS 25 PUERTAS
+// ==================================
+
+const calendar = document.getElementById("calendar");
+
+const hoy = fechaChile();
+
+for (let i = 1; i <= 25; i++) {
+
+  const fechaDia =
+    `${ANIO}-12-${String(i).padStart(2, "0")}`;
+
+  const desbloqueado =
+    MODO_PRUEBA || hoy >= fechaDia;
+
+  const button = document.createElement("button");
+
+  button.className = "day";
+
+  if (!desbloqueado) {
+
+    button.classList.add("locked");
+    button.innerHTML = "🔒";
+    button.disabled = true;
+
+  } else {
+
+    button.innerHTML = i + " ♥";
+
+    if (i === 25) {
+      button.classList.add("special");
+    }
+
+    button.onclick = () => openMessage(i);
+
+  }
+
+  calendar.appendChild(button);
+
+}
+
+
+// ==================================
+// ABRIR MENSAJES
+// ==================================
+
+function openMessage(day) {
+
+  const title = document.getElementById("title");
+  const message = document.getElementById("message");
+
+  if (day === 25) {
+
+    title.innerText = "Una última sorpresa, mi amor 💌";
+    message.innerText = cartaNavidad;
+    message.classList.add("letter");
+
+  } else {
+
+    title.innerText = `Razón número ${day} ❤️`;
+    message.innerText = reasons[day - 1];
+    message.classList.remove("letter");
+
+  }
+
+  document.getElementById("modal").style.display = "flex";
+
+}
+
+
+// ==================================
+// CERRAR VENTANA
+// ==================================
+
+function closeMessage() {
+
+  document.getElementById("modal").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>
